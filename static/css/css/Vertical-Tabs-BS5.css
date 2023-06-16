@@ -1,0 +1,19 @@
+.nav-link {
+  display: block;
+  padding: .5rem 1rem;
+  color: #8ed2ef;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.nav-link:focus, .nav-link:hover {
+  color: #454848;
+  background-color: #afafb3;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: rgba(13,110,253,0);
+  background: rgb(78, 93, 108);
+}
+

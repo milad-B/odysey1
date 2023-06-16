@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin: 33px;margin-top: 96px;">
+        <div class="container">
+            <div class="row row-cols-1">
+                <div class="col d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-xxl-center">
+                    <h2 class="text-center" style="width: 343px;text-align: center;font-family: Tajawal, sans-serif;font-weight: bold;">ليست آزمون ها</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="margin-top: 22px;font-family: Tajawal, sans-serif;box-shadow: 0px 0px 4px 2px;">
+                        <table class="table table-striped table-bordered" id="example" cellspacing="0" width="100%">
+                            <thead style="font-family: Tajawal, sans-serif;">
+                                <tr style="font-family: Tajawal, sans-serif;">
+                                    <th style="text-align: center;font-family: Tajawal, sans-serif;background: #0dcaf0;">Id</th>
+                                    <th style="text-align: center;font-family: Tajawal, sans-serif;background: #0dcaf0;">نام تست</th>
+                                    <th style="text-align: center;font-family: Tajawal, sans-serif;background: #0dcaf0;">موضوع</th>
+                                    <th style="text-align: center;font-family: Tajawal, sans-serif;background: #0dcaf0;">قيمت</th>
+                                    <th style="text-align: center;font-family: Tajawal, sans-serif;background: #0dcaf0;">انجام دادن</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background: var(--bs-body-color);color: rgb(255,255,255);">
+                                <tr data-bss-hover-animate="pulse">
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);color: rgb(255,255,255);">1</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);color: rgb(255,255,255);">آزمون</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);color: rgb(255,255,255);">شناختی</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);color: rgb(255,255,255);">25</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);"><button class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 16 16" fill="currentColor" class="bi bi-patch-check-fll d-xl-flex justify-content-xl-center align-items-xl-center"><path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984a.5.5 0 0 0-.708-.708L7 8.793 5.854 7.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"></path></svg></button></td>
+                                </tr>
+                                <tr data-bss-hover-animate="pulse">
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);">1</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);">آزمون</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);">شناختی</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);">25</td>
+                                    <td class="text-center" style="font-family: Tajawal, sans-serif;border-width: 2px;border-color: rgba(8,18,28,0.32);"><button class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 16 16" fill="currentColor" class="bi bi-patch-check-fll d-xl-flex justify-content-xl-center align-items-xl-center"><path fill-rule="evenodd" d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984a.5.5 0 0 0-.708-.708L7 8.793 5.854 7.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"></path></svg></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-inline" style="margin-top: 28px;width: auto;height: auto;">
+        <section style="margin-right: 17px;margin-left: 30px;"></section>
+    </div>
+    {% endblock content %}
