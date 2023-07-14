@@ -1,12 +1,17 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>odyse (copy)</title>
+    <title>اودیسه</title>
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{% static 'img/od.png' %}">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{% static 'img/od.png' %}">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{% static 'img/od.png' %}">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{% static 'img/od.png' %}">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{% static 'img/od.png' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Blaka&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Blaka+Hollow&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Blaka+Ink&amp;display=swap">
@@ -22,18 +27,11 @@
     <link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Cool-Menu-Navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/Footer-Basic-icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/Hero-Carousel-images.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navbar---App-Toolbar--LG--MD---Mobile-Nav--SM--XS-navbar-breakpoint-override.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navbar---App-Toolbar--LG--MD---Mobile-Nav--SM--XS.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts/fontawesome5-overrides.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/css/aos.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/css/animate.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/css/Beautiful-Time-Picker.css' %}">
     <link rel="stylesheet" href="{% static 'css/css/Cool-Menu-Navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/css/Form-Select---Full-Date---Month-Day-Year.css' %}">
     <link rel="stylesheet" href="{% static 'css/css/Ludens-Users---3-Profile.css' %}">
@@ -41,6 +39,8 @@
     <link rel="stylesheet" href="{% static 'css/css/Vertical-Tabs-BS5.css' %}">
     <link rel="stylesheet" href="{% static 'css/css/Blog-Detail-App.css' %}">
     <link rel="stylesheet" href="{% static 'css/css/Lista-Productos-Canito.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Signup-page-with-overlay.css' %}">
+    <link rel="stylesheet" href="{% static 'kamadatepicker.min.css' %}">
 </head>
 
 <body style="background: var(--bs-blue);">
@@ -52,9 +52,9 @@
                 <ul class="navbar-nav ms-auto" id="desktop-toolbar">
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-family: Tajawal, sans-serif;font-weight: bold;color: #009e49;"><img class="rounded-circle" src="{% static 'img/pr.jpg' %}" width="25px" height="25px">&nbsp;{{username}}</a>
                         {% if username %}
-                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="panel"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" href="signin"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
+                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="panel"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" href="/accounts/login"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
                         {% else %}
-                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="signin"><i class="fa fa-power-off fa-fw"></i>Login </a></div>
+                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="/accounts/login"><i class="fa fa-power-off fa-fw"></i>Login </a></div>
                         {% endif %}
                         
                     </li>
@@ -108,8 +108,75 @@
     <script src="{% static 'js/js/aos.min.js' %}"></script>
     <script src="{% static 'js/js/bs-init.js' %}"></script>
     <script src="{% static 'js/js/bs-init-1.js' %}"></script>
-    <script src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'kamadatepicker.min.js' %}"></script>
+    <script>{
+                kamaDatepicker('test-date-id-2');
+                kamaDatepicker('test-date-id', {
 
-</body>
+// placeholder text
+placeholder: "",
+
+// enable 2 digits
+twodigit: true,
+
+// close calendar after select
+closeAfterSelect: true,
+
+// nexy / prev buttons
+nextButtonIcon: "بعدی",
+previousButtonIcon: "قبلی ",
+
+// color of buttons
+buttonsColor: "پیشفرض ",
+
+// force Farsi digits
+forceFarsiDigits: false,
+
+// highlight today
+markToday: false,
+
+// highlight holidays
+markHolidays: false,
+
+// highlight user selected day
+highlightSelectedDay: false,
+
+// true or false
+sync: false,
+
+// display goto today button
+gotoToday: false,
+
+// the number of years to be selected before this year
+pastYearsCount: 95,
+
+// the number of years to be selected after this year
+futureYearsCount: 6,
+
+// auto swaps next/prev buttons
+swapNextPrev: false,
+
+// define custom holidays here
+holidays: [
+  { month: 1, day: 1 },
+  { month: 1, day: 2 },
+  { month: 1, day: 3 },
+  { month: 1, day: 4 },
+  { month: 1, day: 12 },
+  { month: 1, day: 13 },
+  { month: 3, day: 14 },
+  { month: 3, day: 15 },
+  { month: 11, day: 22 },
+  { month: 12, day: 29 }
+],
+
+// set disabled holidays
+disableHolidays: false
+
+});
+        }
+    </script>
+
+                    </body>
 
 </html>
