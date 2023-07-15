@@ -34,52 +34,31 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-8 left-box" style="margin-top: 23px;">
+                            {% for post in posts %}
                             <div class="card single_post" style="background: rgb(255,255,255);border-radius: 8px;box-shadow: 0px 0px 7px;">
                                 <div class="body">
-                                    <div class="d-xxl-flex justify-content-xxl-center img-post"><img class="img-fluid d-block" src="assets/img/colorful-marketing-brain-psych-mob-1710.jpg" alt="First slide"></div>
-                                    <h3 class="text-end">سلام</h3>
-                                    <p class="text-end">اینجا اخبار و پستهای مربوط به تحصیل قرار میگیره</p>
+                                    {{ post.body|safe }}
                                 </div>
                             </div>
                             <div class="card" style="background: rgb(255,255,255);border-radius: 8px;box-shadow: 0px 0px 7px;">
                                 <div class="header">
-                                    <h2 class="text-end" style="font-family: Tajawal, sans-serif;">نظرات 3</h2>
+                                    <h2 class="text-end" style="font-family: Tajawal, sans-serif;">نظرات</h2>
                                 </div>
                                 <div class="body">
                                     <ul class="list-unstyled comment-reply">
+                                        {% for comment in post.comment_set.all %}
                                         <li class="row clearfix">
-                                            <div class="icon-box col-md-2 col-4"><img class="img-thumbnail img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
+                                            <div class="icon-box col-md-2 col-4"><img class="img-thumbnail img-fluid" src="{{comment.img.url}}" alt="Awesome Image"></div>
                                             <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                                <h5 class="m-b-0">جیگر</h5>
-                                                <p>نظرم مثبته</p>
+                                                <h5 class="m-b-0">{{comment.name}}</h5>
+                                                <p> {{comment.Comment}} </p>
                                                 <ul class="list-inline">
-                                                    <li class="list-inline-item list-inline-item"><a>Mar 09 2018</a></li>
-                                                    <li class="list-inline-item list-inline-item"><a>Reply</a></li>
+                                                    <li class="list-inline-item list-inline-item"><a>{{comment.shamsidate}}</a></li>
+                                                    <!-- <li class="list-inline-item list-inline-item"><a>Reply</a></li> -->
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="row clearfix">
-                                            <div class="icon-box col-md-2 col-4"><img class="img-thumbnail img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-                                            <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                                <h5 class="m-b-0">جیگر</h5>
-                                                <p>نظرم مثبته</p>
-                                                <ul class="list-inline">
-                                                    <li class="list-inline-item list-inline-item"><a>Mar 09 2018</a></li>
-                                                    <li class="list-inline-item list-inline-item"><a>Reply</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="row clearfix">
-                                            <div class="icon-box col-md-2 col-4"><img class="img-thumbnail img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-                                            <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                                <h5 class="m-b-0">جیگر</h5>
-                                                <p>نظرم مثبته</p>
-                                                <ul class="list-inline">
-                                                    <li class="list-inline-item list-inline-item"><a>Mar 09 2018</a></li>
-                                                    <li class="list-inline-item list-inline-item"><a>Reply</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -89,20 +68,33 @@
                                 </div>
                                 <div class="body">
                                     <div class="comment-form">
-                                        <form class="row clearfix">
+                                        <form class="row clearfix" method="post">
+                                            {% csrf_token %}
+                                            <input name="subject" type="hidden" value="{{post.subject}}">
+                                            <input name="postpk" type="hidden" value="{{post.pk}}">
+                                            <input name="username" type="hidden" value="{{username}}">
+                                            
                                             <div class="col-sm-6">
-                                                <div class="form-group"><input class="form-control form-control form-control" type="text" placeholder="Your Name" style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 4px;padding-bottom: 7px;"></div>
+                                                <div class="form-group">
+                                                    <input name="name" class="form-control form-control form-control" type="text" placeholder="Your Name" style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 4px;padding-bottom: 7px;">
+                                                </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="form-group"><input class="form-control form-control form-control" type="text" placeholder="Email Address" style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 4px;padding-bottom: 7px;"></div>
+                                                <div class="form-group">
+                                                    <input name="email" class="form-control form-control form-control" type="text" placeholder="Email Address" style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 4px;padding-bottom: 7px;">
+                                                </div>
                                             </div>
                                             <div class="col-sm-12">
-                                                <div class="form-group"><textarea class="form-control form-control form-control no-resize" rows="4" placeholder="Please type what you want..." style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 0px;padding-bottom: 0px;margin-top: 10px;"></textarea></div><button class="btn btn-primary btn-block" type="submit" style="margin-top: 7px;background: rgb(0,0,0);color: rgb(122,122,122);font-family: Tajawal, sans-serif;border-top-width: 0px;">ثبت نظر</button>
+                                                <div class="form-group">
+                                                    <textarea name="comment"  class="form-control form-control form-control no-resize" rows="4" placeholder="Please type what you want..." style="background: rgba(108,181,194,0.5);border-top-width: 0px;border-radius: 8px;box-shadow: 0px 0px 3px rgb(33, 37, 41);color: rgb(255,255,255);padding-top: 0px;padding-bottom: 0px;margin-top: 10px;"></textarea>
+                                                </div>
+                                                <button class="btn btn-primary btn-block" type="submit" style="margin-top: 7px;background: rgb(0,0,0);color: rgb(122,122,122);font-family: Tajawal, sans-serif;border-top-width: 0px;">ثبت نظر</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
 
                     </div>

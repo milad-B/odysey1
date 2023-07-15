@@ -12,6 +12,8 @@ from django.utils.text import slugify
 
 from django.utils.translation import gettext_lazy as _
 import jdatetime
+from datetime import datetime
+from django.utils import timezone
 
 # Create your models here.
 class Homepage(models.Model):
@@ -68,17 +70,24 @@ class Bpost(models.Model):
     title = models.CharField( max_length=250,
         null=False, blank=False
     )
+    subject = models.CharField(max_length=200 ,default='psy')
     body = RichTextUploadingField()
     def __str__(self):
-        return self.title
+        return 'id:'+str(self.pk)+'    title:'+str(self.title )
 
 class Comment(models.Model):
     post = models.ForeignKey(Bpost,on_delete=models.CASCADE)
     def __str__(self):
-        return str(self.title) + str(self.name)
+        return  str(self.name)
+    
+    img = models.ImageField(default='/static/guestprofile.jpg')
     name = models.CharField(max_length=200 ,default=0)
     email = models.CharField(max_length=200 ,default=0)
     Comment = models.TextField(max_length=200 ,default=0)
+    date = models.DateField(default=timezone.now())
+    def shamsidate(self):
+        jalili_date =  jdatetime.date.fromgregorian(day=self.date.day,month=self.date.month,year=self.date.year)
+        return jalili_date
 
 class Keywords(models.Model):
     post = models.ForeignKey(Bpost,on_delete=models.CASCADE)

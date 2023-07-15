@@ -52,7 +52,7 @@
                 <ul class="navbar-nav ms-auto" id="desktop-toolbar">
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-family: Tajawal, sans-serif;font-weight: bold;color: #009e49;"><img class="rounded-circle" src="{% static 'img/pr.jpg' %}" width="25px" height="25px">&nbsp;{{username}}</a>
                         {% if username %}
-                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="panel"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" href="/accounts/login"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
+                        <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="/panel"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" href="/accounts/logout"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
                         {% else %}
                         <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="/accounts/login"><i class="fa fa-power-off fa-fw"></i>Login </a></div>
                         {% endif %}
@@ -62,15 +62,15 @@
                 <ul class="navbar-nav" id="mobile-nav" style="color: var(--bs-gray-100);">
                     <li class="nav-item"><a class="nav-link" href="/" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-home fa-fw"></i>&nbsp;صفحه اصلي</a></li>
                     {% if username %}
-                    <li class="nav-item"><a class="nav-link" href="panel" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-th fa-fw"></i> پنل خدمات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/panel" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-th fa-fw"></i> پنل خدمات</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="panelguest" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-th fa-fw"></i> پنل خدمات</a></li>    
+                    <li class="nav-item"><a class="nav-link" href="/panelguest" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-th fa-fw"></i> پنل خدمات</a></li>    
                     {% endif %}
-                    <li class="nav-item "><a class="nav-link" href="psyjournal" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-book fa-fw"></i>مجله روانشناسي</a></li>
-                    <li class="nav-item"><a class="nav-link " href="edujournal" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-mortar-board fa-fw"></i>&nbsp; مجله تحصيلي</a>
+                    <li class="nav-item "><a class="nav-link" href="/journal/psy" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-book fa-fw"></i>مجله روانشناسي</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/journal/edu" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fa fa-mortar-board fa-fw"></i>&nbsp; مجله تحصيلي</a>
                      <!--    <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="fundraising.html"><i class="fa fa-star fa-fw"></i> Link Item</a><a class="dropdown-item" href="donations.html"><i class="fa fa-star fa-fw"></i> Link Item</a><a class="dropdown-item" href="events-listing.html"><i class="fa fa-star fa-fw"></i> Link Item</a></div> -->
                     </li>
-                    <li class="nav-item "><a class="nav-link"href="tests" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fas fa-user-check fa-fw"></i>&nbsp; آزمونها</a>
+                    <li class="nav-item "><a class="nav-link"href="/tests" style="font-family: Tajawal, sans-serif;font-weight: bold;color: var(--bs-navbar-active-color);"><i class="fas fa-user-check fa-fw"></i>&nbsp; آزمونها</a>
                       <!--   <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="fundraising.html"><i class="fa fa-star fa-fw"></i> Link Item</a><a class="dropdown-item" href="donations.html"><i class="fa fa-star fa-fw"></i> Link Item</a><a class="dropdown-item" href="events-listing.html"><i class="fa fa-star fa-fw"></i> Link Item</a></div> -->
                     </li>
                 </ul>

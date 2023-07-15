@@ -31,8 +31,8 @@ urlpatterns = [
 
 
     path('panelguest',views.panelguest),
-    path('psyjournal',views.psyjournal),
-    path('edujournal',views.edujournal),
+    path('journal/<str:sub>',views.journal),
+    path('journal/<str:sub>',views.journal),
     path('tests',views.tests),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

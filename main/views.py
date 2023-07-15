@@ -156,17 +156,43 @@ def panelguest(request):
     d={'username':username}
     return render(request , 'panelguest.html',d)
 
-def psyjournal(request):
-    username = request.user.username
+def journal(request,sub):
+    if request.user.username:
+        username = request.user.username
+        oup = Profile.objects.get(user=request.user)
+    else:
+        username = 'guest'
+    
+    
 
-    d={'username':username}
+    if  request.method == 'POST':
+
+        subject = request.POST.get('subject')
+        postpk = request.POST.get('postpk')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        comment = request.POST.get('comment')
+
+        post = Bpost.objects.get(pk=postpk, subject=subject)
+        if request.user.username:
+            username = request.user.username
+            oup = Profile.objects.get(user=request.user)
+            img = oup.img
+            Comment(post=post, name=name, email=email, Comment=comment, img = img).save()
+        else:
+            username = 'guest'
+            img = None
+            Comment(post=post, name=name, email=email, Comment=comment).save()
+
+    posts = Bpost.objects.filter(subject=sub)
+    
+
+    d={'posts':posts,
+        'username':username,
+        }
     return render(request , 'psyjournal.html',d)
 
-def edujournal(request):
-    username = request.user.username
 
-    d={'username':username}
-    return render(request , 'edujournal.html',d)
 
 def tests(request):
     username = request.user.username
