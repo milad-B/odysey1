@@ -34,5 +34,6 @@ urlpatterns = [
     path('journal/<str:sub>',views.journal),
     path('journal/<str:sub>',views.journal),
     path('tests',views.tests),
+    path('chat',views.chat),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

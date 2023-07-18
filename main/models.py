@@ -12,8 +12,11 @@ from django.utils.text import slugify
 
 from django.utils.translation import gettext_lazy as _
 import jdatetime
-from datetime import datetime
+from datetime import datetime,timedelta
 from django.utils import timezone
+
+from rest_framework import  serializers
+
 
 # Create your models here.
 class Homepage(models.Model):
@@ -94,5 +97,22 @@ class Keywords(models.Model):
     word = models.CharField(max_length=200 ,default=0)
     def __str__(self):
         return str(self.post.title) +'|'+ str(self.word)
+
+class Chat(models.Model):
+    user = models.ForeignKey(User,related_name='chat',on_delete=models.CASCADE)
+
+    
+    userip = models.CharField(max_length=200 ,default=0)
+    name = models.CharField(max_length=200 ,default=0)
+    #user admin
+    direction = models.CharField(max_length=200 ,default='user')
+    text = models.CharField(max_length=200 ,default=0)
+    time = models.DateTimeField(default=timezone.now())
+
+    def diftime(self):
+        dt = datetime.now(timezone.utc) - self.time
+        return {'diftime':str(dt)}
+    def __str__(self):
+        return str(self.pk) +'|'+ str(self.user.username)
 
 

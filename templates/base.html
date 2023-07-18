@@ -48,9 +48,9 @@
     <nav class="navbar navbar-light navbar-expand-md fixed-top d-xl-flex" data-aos="fade-down" style="background: var(--bs-cyan);margin-right: 14px;margin-left: 14px;">
         <div class="container-fluid">
             <div><a class="navbar-brand" href="#" style="font-family: 'Reem Kufi Ink', sans-serif;">اودیسه</a><button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
-            <div class="collapse navbar-collapse d-xxl-flex" id="navcol-2" style="color: var(--bs-card-bg);"><a style="font-family: Tajawal, sans-serif;font-weight: bold;color: rgb(177,5,5);background: rgba(173,80,80,0);">مشاوره ي تلفني اضطراري&nbsp;<i class="fas fa-first-aid fa-fw"></i></a>
+            <div class="collapse navbar-collapse d-xxl-flex" id="navcol-2" style="color: var(--bs-card-bg);"><a href="/chat" style=" font-family: Tajawal, sans-serif;font-weight: bold;color: rgb(177,5,5);background: rgba(173,80,80,0);">مشاوره ي اضطراري&nbsp;<i class="fas fa-first-aid fa-fw"></i></a>
                 <ul class="navbar-nav ms-auto" id="desktop-toolbar">
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-family: Tajawal, sans-serif;font-weight: bold;color: #009e49;"><img class="rounded-circle" src="{% static 'img/pr.jpg' %}" width="25px" height="25px">&nbsp;{{username}}</a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="font-family: Tajawal, sans-serif;font-weight: bold;color: #009e49;"><img class="rounded-circle" src="{{oup.img.url}}" width="25px" height="25px">&nbsp;{{username}}</a>
                         {% if username %}
                         <div class="dropdown-menu" style="background: rgb(13,202,240);"><a class="dropdown-item" href="/panel"><i class="fa fa-user fa-fw"></i> Profile </a><a class="dropdown-item" href="/accounts/logout"><i class="fa fa-power-off fa-fw"></i>Logout </a></div>
                         {% else %}

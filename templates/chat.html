@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.friend-list {
+  list-style: none;
+margin-left: -40px;
+}
+
+.friend-list li {
+  border-bottom: 1px solid #00000000;
+}
+
+.friend-list li a img {
+  float: left;
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+}
+
+ .friend-list li a {
+  position: relative;
+  display: block;
+  padding: 10px;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+}
+
+.friend-list li.active a {
+  background-color: #f1f5fc;
+}
+
+.friend-list li a .friend-name, 
+.friend-list li a .friend-name:hover {
+  color: #777;
+}
+
+.friend-list li a .last-message {
+  width: 65%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.friend-list li a .time {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+}
+
+small, .small {
+  font-size: 85%;
+}
+
+.friend-list li a .chat-alert {
+  position: absolute;
+  right: 8px;
+  top: 27px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+
+.chat-message {
+  padding: 60px 20px 115px;
+}
+
+.chat {
+    
+    list-style: none;
+    margin: 0;
+}
+
+.chat-message{
+    background: #f9f9f9;  
+}
+
+.chat li img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50em;
+  -moz-border-radius: 50em;
+  -webkit-border-radius: 50em;
+}
+
+img {
+  max-width: 100%;
+}
+
+.chat-body {
+  padding-bottom: 20px;
+}
+
+.chat li.left .chat-body {
+  margin-left: 70px;
+  background-color: #fff;
+}
+
+.chat li .chat-body {
+  position: relative;
+  font-size: 11px;
+  padding: 10px;
+  border: 1px solid #f1f5fc;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.chat li .chat-body .header {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f1f5fc;
+}
+
+.chat li .chat-body p {
+  margin: 0;
+}
+
+.chat li.left .chat-body:before {
+  position: absolute;
+  top: 10px;
+  left: -8px;
+  display: inline-block;
+  background: #ffffff;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid #f1f5fc;
+  border-left: 1px solid #f1f5fc;
+  content: '';
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+.chat li.right .chat-body:before {
+  position: absolute;
+  top: 10px;
+  right: -8px;
+  display: inline-block;
+  background: #fff;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid #f1f5fc;
+  border-right: 1px solid #f1f5fc;
+  content: '';
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.chat li {
+  margin: 15px 0;
+}
+
+.chat li.right .chat-body {
+  margin-right: 70px;
+  background-color: #fff;
+}
+
+.chat-box {
+/*
+  position: fixed;
+  bottom: 0;
+  left: 444px;
+  right: 0;
+*/
+  padding: 15px;
+  border-top: 1px solid #eee;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+}
+
+.primary-font {
+  color: #3c8dbc;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+  outline: 0;
+}
+</style>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div style=" margin-top: 100px;border-radius: 10%; "  class="container bootstrap snippets bootdey">
+    <div class="row">
+		<div class="col-md-4 bg-white " >
+            <div class=" row border-bottom padding-sm" style="background-color: #ffffff; height: 40px;">
+            	<!-- مشاور آنلاین -->
+            </div>
+            
+            <!-- =============================================================== -->
+            <!-- member list -->
+            <ul class="friend-list">
+                
+                <li class="active bounceInDown">
+                	<a  class="clearfix">
+                		<img src="{% static '/img/adminprofile.png' %}" alt="" class="img-circle">
+                		<div class="friend-name">	
+                			<strong>ادمین</strong>
+                		</div>
+                		<div class="last-message text-muted">سلام من آنلاینم</div>
+                		<small class="time text-muted">Just now</small>
+                		<!-- <small class="chat-alert label label-danger">1</small> -->
+                	</a>
+                </li>
+              
+            </ul>
+		</div>
+        
+        <!--=========================================================-->
+        <!-- selected chat -->
+    	<div class="col-md-8 bg-white ">
+            <div class="chat-message">
+                <ul id="chat" class="chat">
+        
+                </ul>
+            </div>
+            <div class="chat-box bg-white">
+            	<div class="input-group">
+            		<input name="text" id="inputmessage" class="form-control border no-shadow no-rounded" placeholder="Type your message here">
+            		<span class="input-group-btn">
+            			<button class="btn btn-success no-rounded" type="button" onclick="sendmessage()">Send</button>
+            		</span>
+            	</div><!-- /input-group -->	
+            </div>            
+		</div>        
+	</div>
+</div>
+<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+<script>
+  function sendmessage () {
+    text = document.getElementById("inputmessage").value
+    console.log(text)
+    $.ajax({
+  type: 'POST',
+  url: "/chat",
+  data: {"csrfmiddlewaretoken": window.CSRF_TOKEN,
+    "text":text,
+      },
+  success: function(){
+    document.getElementById("inputmessage").value = ''
+  }
+
+});
+} 
+  setInterval(function() 
+        {
+  $.ajax({
+  type: 'GET',
+  url: "/chat",
+  success: function(response){
+            
+            $("#chat").empty();
+            
+
+            for (var key in response)
+            {
+      /*       console.log(response[key].direction); */
+
+                date0 = new Date(response[key].time)
+                datanow = new Date()
+                var diff = datanow.getTime() - date0.getTime();
+
+                var msec = diff;
+                var hh = Math.floor(msec / 1000 / 60 / 60);
+                msec -= hh * 1000 * 60 * 60;
+                var mm = Math.floor(msec / 1000 / 60);
+                msec -= mm * 1000 * 60;
+                var ss = Math.floor(msec / 1000);
+                msec -= ss * 1000;
+
+                timer = 'حدود'+ hh + '   ساعت   '+  "و" + mm +'  دقیقه   '+'   پیش    ' ;
+
+              if (response[key].direction == 'admin'){
+                var temp= '<li class="right clearfix"><span class="chat-img pull-right"><img src="/static/img/adminprofile.png" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">ادمین</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+timer+'</small></div><p>'+response[key].text+'</p></div></li>'
+              }
+                if (response[key].direction == 'user'){
+                  var temp='<li class="left clearfix"><span class="chat-img pull-left"><img src="/static/img/guestprofile.jpg" alt="User Avatar"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'+response[key].name+'</strong><small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+timer+'</small></div><p>'+response[key].text+'</p></div></li>';
+                
+              }
+             /*  console.log(temp); */
+              $("#chat").append(temp);
+              
+            }
+        },
+        error: function(response){
+            alert('An error occured')
+        }
+});
+        }, 3000);
+  
+
+
+</script>
+
+  {% endblock content %}

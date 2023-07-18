@@ -12,7 +12,13 @@ from tronpy import Tron
 from tronpy.keys import PrivateKey
 import jdatetime
 from django.http import JsonResponse
+from django.core import serializers
+from django.forms.models import model_to_dict
+from rest_framework.serializers import ModelSerializer
+from rest_framework.renderers import JSONRenderer
 
+import json
+from .serializers import Chatserializer
 
 
 
@@ -20,14 +26,24 @@ from django.http import JsonResponse
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
-
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    if ip == '127.0.0.1': # Only define the IP if you are testing on localhost.
+        ip = '5.134.156.155'
+    return ip
 
 def home(request):
     username = request.user.username
+    oup = Profile.objects.get(user=request.user)
     bannerimg = Homepage.objects.get(selected=1).img_url
     stickies = Sticky.objects.filter(homepage__selected=1)
 
-    d={'username':username,
+    d={'oup':oup,
+        'username':username,
        'bannerimg':bannerimg,
        'stickies':stickies,
        }
@@ -48,7 +64,7 @@ def signup(request):
         
     return render(request , 'signup.html')
 
-
+@login_required()
 def panel(request):
     if is_ajax(request) and request.method == "POST":
         listofhour=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
@@ -186,8 +202,9 @@ def journal(request,sub):
 
     posts = Bpost.objects.filter(subject=sub)
     
-
-    d={'posts':posts,
+    oup = Profile.objects.get(user=request.user)
+    d={'oup':oup,
+        'posts':posts,
         'username':username,
         }
     return render(request , 'psyjournal.html',d)
@@ -196,6 +213,63 @@ def journal(request,sub):
 
 def tests(request):
     username = request.user.username
-
-    d={'username':username}
+    oup = Profile.objects.get(user=request.user)
+    d={'oup':oup,
+        'username':username}
     return render(request , 'tests.html',d)
+
+@login_required()
+def chat(request):
+    if is_ajax(request) and request.method == "POST":
+        if request.user.username:
+            oup = Profile.objects.get(user=request.user)
+            name=oup.name
+        else:
+            name = 'مهمان'
+
+        user = request.user
+        text = request.POST.get('text')
+        userip = get_client_ip(request)
+
+        Chat(user=user,name=name, userip=userip, direction='user', text=text ).save()
+
+        return HttpResponse('submit')
+
+    if is_ajax(request) and request.method == "GET":
+        if request.user.username:
+            user = request.user
+            username = user.username
+            oup = Profile.objects.get(user=user)
+            chats = Chat.objects.filter(user=request.user).order_by('time')
+        else:
+            userip = get_client_ip(request)
+            ips= str(userip).split(".")
+            username = 'مهمان'
+            chats = Chat.objects.filter(userip=str(userip)).order_by('time')
+
+        data = Chatserializer( chats ,many=True)
+
+        
+
+        #d= model_to_dict(chats)
+        #chatjson = Chatserializer(chats, many=True).data
+        
+        return JsonResponse(data.data, safe=False)
+    
+    if request.user.username:
+        user = request.user
+        username = user.username
+        oup = Profile.objects.get(user=user)
+        chats = Chat.objects.filter(user=request.user).order_by('time')
+    else:
+        userip = get_client_ip(request)
+        ips= str(userip).split(".")
+        username = 'مهمان'
+        chats = Chat.objects.filter(userip=str(userip)).order_by('time')
+    
+    
+    
+    d={'oup':oup,
+        'chats':chats,
+        'username':username}
+    return render(request , 'chat.html',d)
